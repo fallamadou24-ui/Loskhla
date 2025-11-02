@@ -34,7 +34,13 @@ class _MessagingScreenState extends State<MessagingScreen> {
 
           if (snapshot.hasError) {
             return Center(
-              child: Text('Erreur de chargement : ${snapshot.error}'),
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Text(
+                  _formatError(snapshot.error),
+                  textAlign: TextAlign.center,
+                ),
+              ),
             );
           }
 
@@ -62,5 +68,16 @@ class _MessagingScreenState extends State<MessagingScreen> {
         },
       ),
     );
+  }
+
+  String _formatError(Object? error) {
+    if (error == null) {
+      return 'Une erreur imprevue est survenue. Merci de reessayer.';
+    }
+    final text = error.toString();
+    if (text.startsWith('Exception: ')) {
+      return text.replaceFirst('Exception: ', '');
+    }
+    return text;
   }
 }

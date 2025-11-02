@@ -1,3 +1,3 @@
-const String apiBaseUrl = 'https://your-api-url.com'; // TODO: replace with the real API URL
+const String apiBaseUrl = 'https://artisan-connect-88.lovable.app';
 
 const Duration defaultTimeout = Duration(seconds: 15);

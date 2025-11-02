@@ -56,7 +56,13 @@ class _ArtisanListScreenState extends State<ArtisanListScreen> {
 
           if (snapshot.hasError) {
             return Center(
-              child: Text('Impossible de charger les artisans : ${snapshot.error}'),
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Text(
+                  _formatError(snapshot.error),
+                  textAlign: TextAlign.center,
+                ),
+              ),
             );
           }
 
@@ -84,6 +90,17 @@ class _ArtisanListScreenState extends State<ArtisanListScreen> {
         },
       ),
     );
+  }
+
+  String _formatError(Object? error) {
+    if (error == null) {
+      return 'Une erreur imprevue est survenue. Merci de reessayer.';
+    }
+    final text = error.toString();
+    if (text.startsWith('Exception: ')) {
+      return text.replaceFirst('Exception: ', '');
+    }
+    return text;
   }
 }
 
